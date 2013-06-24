@@ -1,3 +1,4 @@
+/*
 var makeBlinkyDancer = function(top, left, timeBetweenSteps){
   var blinkyDancer = makeDancer(top, left, timeBetweenSteps);
 
@@ -12,8 +13,26 @@ var makeBlinkyDancer = function(top, left, timeBetweenSteps){
     /* toggle() is a jQuery method to show/hide the <span> tag.
      * See http://api.jquery.com/category/effects/ for this and
      * other effects you can use on a jQuery-wrapped html tag. */
+    /*
     blinkyDancer.$node.toggle();
   };
 
   return blinkyDancer;
 };
+*/
+
+var makeBlinkyDancer = function(top, left, timeBetweenSteps){
+  this.timeBetweenSteps = timeBetweenSteps;
+  this.top = top;
+  this.left = left;
+  this.timeBetweenSteps = timeBetweenSteps;
+  this.step();
+  this.setPosition(top,left);
+};
+makeBlinkyDancer.prototype = Object.create(makeDancer.prototype);
+var oldStep = makeDancer.prototype.step;
+makeBlinkyDancer.prototype.step = function(){
+  oldStep();
+  this.$node.toggle();
+};
+
