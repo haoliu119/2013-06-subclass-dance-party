@@ -34,17 +34,20 @@ var makeDancer = function(top, left, timeBetweenSteps){
 };
 */
 
-var makeDancer = function(top, left, timeBetweenSteps){
+var Dancer = function(top, left, timeBetweenSteps){
   this.top = top;
   this.left = left;
   this.timeBetweenSteps = timeBetweenSteps;
+  this.$node = $('<span class="dancer"></span>');
+
 };
-makeDancer.prototype.$node = $('<span class="dancer"></span>');
-makeDancer.prototype.step = function(){
-      setTimeout(this.step, this.timeBetweenSteps);
+Dancer.prototype.step = function(flag){
+      var that = this;
+      flag = flag? false : true;
+      setTimeout(function(){that.step(flag);}, that.timeBetweenSteps);
 };
 
-makeDancer.prototype.setPosition = function(){
+Dancer.prototype.setPosition = function(){
       var styleSettings = {
       top: this.top,
       left: this.left

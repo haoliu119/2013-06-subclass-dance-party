@@ -21,20 +21,24 @@ var makeBlinkyDancer = function(top, left, timeBetweenSteps){
 };
 */
 
-var BlinkyDancer = function(top, left, timeBetweenSteps){
+var BounceDancer = function(top, left, timeBetweenSteps){
   Dancer.call(this, top, left, timeBetweenSteps);
-  this.step();
   this.setPosition(top, left);
+  this.step(true);
 };
-BlinkyDancer.prototype = Object.create(Dancer.prototype);
-// BlinkyDancer.prototype = new Dancer();
-BlinkyDancer.prototype.constructor = BlinkyDancer;
-BlinkyDancer.prototype.step = function(){
-  Dancer.prototype.step.call(this);
+BounceDancer.prototype = Object.create(Dancer.prototype);
+BounceDancer.prototype.constructor = BounceDancer;
+BounceDancer.prototype.step = function(flag){
   var that = this;
-  var ranDist = Math.random()*800;
-  that.$node.animate({top: this.top-60},500,"linear",function(){
-    that.$node.animate({top: that.top},500,"linear");
-  });
+  // var ranDist = Math.random()*800;
+  if (flag){
+    this.$node.animate({top: $("body").height()},1000,"swing");
+  }else{
+    this.$node.animate({top: this.top},1000,"swing");
+  }
+  Dancer.prototype.step.call(this, flag);
+  // that.$node.animate({top: this.top-60},500,"linear",function(){
+  //   that.$node.animate({top: that.top},500,"linear");
+  // });
 };
 
