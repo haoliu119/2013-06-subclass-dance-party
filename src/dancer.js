@@ -30,7 +30,25 @@ Dancer.prototype.setPosition = function(){
   this.$node.css(styleSettings);
 };
 
-// Utility Functions Common to All Dancer Types
+Dancer.prototype.bounce = function (flag){
+  var that = this;
+  if (flag){
+    that.$node.animate({top: $("body").height()-15},that.verticalSpeed,"swing", function(){that.bounce(!flag);});
+  }else{
+    that.$node.animate({top: 35},that.verticalSpeed,"swing", function(){that.bounce(!flag);});
+  }
+};
+
+Dancer.prototype.slide = function(flag){
+  var that = this;
+  if (flag){
+    that.$node.animate({left: $("body").width()-15},that.horizontalSpeed,"swing", function(){that.slide(!flag);});
+  }else{
+    that.$node.animate({left: 0},that.horizontalSpeed,"swing", function(){that.slide(!flag);});
+  }
+};
+
+// ---------------- Utility Functions Common to All Dancer Types ------------- //
 var getRandomSpeed = function (minSpeed, maxSpeed,increment){
   increment = increment || 1;
   minSpeed = minSpeed / increment;
