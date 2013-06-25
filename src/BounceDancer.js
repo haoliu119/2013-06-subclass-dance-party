@@ -6,10 +6,8 @@
 var BounceDancer = function(top, left, timeBetweenSteps){
   Dancer.call(this, top, left, timeBetweenSteps);
   this.verticalSpeed = getRandomSpeed(1200, 2600, 200);
-  // this.horizontalSpeed = getRandomSpeed(1400, 3000, 200);
-  this.$node.addClass("bouncer");
-  this.bounce.call(this,true);
-  // this.slide(true);
+  this.bounce.call(this);
+  this.$node.css({'-webkit-animation-duration': this.verticalSpeed+"ms"});
 };
 BounceDancer.prototype = Object.create(Dancer.prototype);
 BounceDancer.prototype.constructor = BounceDancer;

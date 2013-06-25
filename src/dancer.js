@@ -29,24 +29,17 @@ Dancer.prototype.setPosition = function(){
   };
   this.$node.css(styleSettings);
 };
-
-Dancer.prototype.bounce = function (flag){
-  var that = this;
-  if (flag){
-    that.$node.animate({top: $("body").height()-15},that.verticalSpeed,"swing", function(){that.bounce(!flag);});
-  }else{
-    that.$node.animate({top: 35},that.verticalSpeed,"swing", function(){that.bounce(!flag);});
-  }
+Dancer.prototype.wander = function (){
+  this.$node.addClass("wander");
 };
 
-Dancer.prototype.slide = function(flag){
-  var that = this;
-  if (flag){
-    that.$node.animate({left: $("body").width()-15},that.horizontalSpeed,"swing", function(){that.slide(!flag);});
-  }else{
-    that.$node.animate({left: 0},that.horizontalSpeed,"swing", function(){that.slide(!flag);});
-  }
+Dancer.prototype.bounce = function (){
+  this.$node.addClass("bounce");
 };
+
+Dancer.prototype.slide = function(){
+  this.$node.addClass("slide");
+}
 
 // ---------------- Utility Functions Common to All Dancer Types ------------- //
 var getRandomSpeed = function (minSpeed, maxSpeed,increment){
